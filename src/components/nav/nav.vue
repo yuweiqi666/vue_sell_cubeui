@@ -18,13 +18,6 @@ export default {
 }
 </script>
 
-<style scoped>
-  .nav {
-    display: flex;
-    justify-content: space-around;
-  }
-  span {
-    flex: 1;
-    text-align: center;
-  }
+<style scoped lang="stylus">
+
 </style>
