@@ -21,4 +21,24 @@ export default {
 </script>
 
 <style lang="stylus">
+  @import "./common/stylus/mixin.styl"
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    border-1px(rgba(7,17,27,.1))
+  }
+
+  span {
+    flex: 1;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .router-link-active {
+    color: rgb(240, 20, 20);
+  }
+
 </style>
