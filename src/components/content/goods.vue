@@ -1,6 +1,6 @@
 <template>
   <div>
-    i am goods
+    <div class="goods">大家好</div>
   </div>
 </template>
 
@@ -14,6 +14,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .goods {
+    width: 100%;
+    height: 50px;
+    background-color: pink;
+  }
 </style>
