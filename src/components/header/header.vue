@@ -42,6 +42,13 @@
             <p class="title-pop">{{ sellerData.name }}</p>
             <!-- 评分组件 -->
             <star :size="48" :score="sellerData.score"></star>
+            <div class="supportContent">
+              <p class="first content"><span></span>{{ sellerData.supports[0].description }}</p>
+              <p class="second content"><span></span>{{ sellerData.supports[1].description }}</p>
+              <p class="third content"><span></span>{{ sellerData.supports[2].description }}</p>
+              <p class="forth content"><span></span>{{ sellerData.supports[3].description }}</p>
+              <p class="fifth content"><span></span>{{ sellerData.supports[4].description }}</p>
+            </div>
             <!-- 优惠信息 -->
             <titleMessage message="优惠信息"></titleMessage>
             <!-- 商家公告 -->
@@ -250,5 +257,65 @@ export default {
     line-height: 16px;
     margin-bottom: 16px
   }
-
+  .content-pop .content {
+    font-size: 12px;
+    font-weight: 200;
+    color: rgb(255, 255, 255);
+    line-height: 12px;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+  .first span {
+    display: inline-block;
+    margin-right: 6px;
+    bg-image('./img/decrease_2')
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .second span {
+    display: inline-block;
+    margin-right: 6px;
+    bg-image('./img/discount_2')
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .third span {
+    display: inline-block;
+    margin-right: 6px;
+    bg-image('./img/guarantee_2')
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .forth span {
+    display: inline-block;
+    margin-right: 6px;
+    bg-image('./img/invoice_2')
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .fifth span {
+    display: inline-block;
+    margin-right: 6px;
+    bg-image('./img/special_2')
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+  .supportContent {
+    padding: 24px 12px 0 12px;
+  }
 </style>
