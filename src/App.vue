@@ -11,6 +11,7 @@
 <script>
 import header from '@/components/header/header'
 import nav from '@/components/nav/nav'
+
 export default {
   name: 'App',
   data() {
@@ -40,8 +41,11 @@ export default {
   body,
   html {
     width: 100%;
+    height: 100%;
   }
-
+  #app {
+    height: 100%;
+  }
   .nav {
     display: flex;
     justify-content: space-around;

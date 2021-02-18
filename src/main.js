@@ -5,7 +5,7 @@ import vueRouter from './router'
 import axios from 'axios'
 import './common/stylus/index.styl'
 
-axios.defaults.baseURL = 'http://localhost:8080'
+// axios.defaults.baseURL = 'http://localhost:8080'
 
 Vue.prototype.$http = axios
 

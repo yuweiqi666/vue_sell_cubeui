@@ -36,12 +36,14 @@
         <img :src="sellerLogo">
       </div>
       <!-- 弹出详情层 -->
-      <div class="detail-pop" v-show="target">
+      <div class="detail-pop" transition="fade" v-show="target">
         <div class="wrapper-pop clearfix">
           <div class="content-pop">
             <p class="title-pop">{{ sellerData.name }}</p>
             <!-- 评分组件 -->
             <star :size="48" :score="sellerData.score"></star>
+            <!-- 优惠信息 -->
+            <titleMessage message="优惠信息"></titleMessage>
             <div class="supportContent">
               <p class="first content"><span></span>{{ sellerData.supports[0].description }}</p>
               <p class="second content"><span></span>{{ sellerData.supports[1].description }}</p>
@@ -49,10 +51,11 @@
               <p class="forth content"><span></span>{{ sellerData.supports[3].description }}</p>
               <p class="fifth content"><span></span>{{ sellerData.supports[4].description }}</p>
             </div>
-            <!-- 优惠信息 -->
-            <titleMessage message="优惠信息"></titleMessage>
             <!-- 商家公告 -->
             <titleMessage message="商家公告"></titleMessage>
+            <div class="content gonggao supportContent">
+              {{ sellerData.bulletin }}
+            </div>
           </div>
         </div>
         <div class="close-pop"  @click="close">
@@ -230,13 +233,14 @@ export default {
     background: rgba(7, 17, 27, 0.8);
     z-index: 999;
     overflow: auto;
+    backdrop-filter: blur(10px);
   }
   .wrapper-pop {
     min-height: 100%
     width: 100%;
   }
   .content-pop {
-    margin-top: 64px;
+    margin-top: 30px;
     padding: 0 36px 64px 36px;
     width: 100%;
     box-sizing: border-box;
@@ -258,7 +262,7 @@ export default {
     margin-bottom: 16px
   }
   .content-pop .content {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 200;
     color: rgb(255, 255, 255);
     line-height: 12px;
@@ -316,6 +320,9 @@ export default {
     vertical-align: middle;
   }
   .supportContent {
-    padding: 24px 12px 0 12px;
+    padding: 0 12px;
+  }
+  .content-pop .gonggao {
+    line-height: 24px;
   }
 </style>

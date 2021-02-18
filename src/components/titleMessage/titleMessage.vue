@@ -22,7 +22,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: space-between;
-    padding: 20px 0 32px 0;
+    padding: 20px 0 27px 0;
   }
   .left,
   .right {
