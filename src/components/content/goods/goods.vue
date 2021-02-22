@@ -8,7 +8,7 @@
       </ul>
     </div>
     <div class="list-content">
-      <div class="main-goods" v-for="(item, index) in goodsData" :key="index">
+      <div class="main-goods food-list-hook" v-for="(item, index) in goodsData" :key="index">
         <p>{{ item.name }}</p>
         <div class="singleGood" v-for="(item1, index1) in item.foods" :key="index1">
           <div class="goodsImage">
@@ -38,7 +38,9 @@ export default {
     return {
       goodsData: null,
       flag: true,
-      goodNum: 0
+      goodNum: 0,
+      classFlag: true,
+      itemLength: []
     }
   },
   components: {
@@ -48,6 +50,33 @@ export default {
     const { data } = await this.$http.get('/api/goods')
     this.goodsData = data.data
     console.log('goodsData', this.goodsData)
+    this.$nextTick(() => {
+      // 获取单个商品的DOM元素
+      const foodListItems = document.querySelector('.list-content').children
+      var length = 0
+      this.itemLength.push(length)
+      for (let i = 0; i < foodListItems.length; i++) {
+        length += foodListItems[i].clientHeight
+
+        this.itemLength.push(length)
+      }
+      // 获取左侧导航栏的DOM元素
+      var sideNavs = document.querySelector('.side-nav').querySelectorAll('li')
+      sideNavs[0].classList.add('highLight')
+      // 监听滚动事件
+      document.querySelector('.list-content').addEventListener('scroll', () => {
+        // for (var i = 0; i < this.itemLength.length; i++) {
+        if (document.querySelector('.list-content').scrollTop > this.itemLength[1]) {
+          for (var j = 0; j < this.itemLength.length; j++) {
+            sideNavs[j].classList.remove('highLight')
+          }
+          sideNavs[1].classList.add('highLight')
+        }
+        // }
+        console.log(document.querySelector('.list-content').scrollTop)
+        console.log(this.itemLength)
+      })
+    })
   },
   methods: {
     handleAdd() {
@@ -198,5 +227,8 @@ export default {
   }
   .money {
     font-size: 16px;
+  }
+  .highLight {
+    background-color: white;
   }
 </style>
