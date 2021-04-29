@@ -5,12 +5,14 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
 import header from '@/components/header/header'
 import nav from '@/components/nav/nav'
+import footer from '@/components/footer/footer'
 
 export default {
   name: 'App',
@@ -23,7 +25,8 @@ export default {
   },
   components: {
     'v-header': header,
-    'v-nav': nav
+    'v-nav': nav,
+    'v-footer': footer
   },
   async created() {
     const { data: sellerData } = await this.$http.get('/api/seller')

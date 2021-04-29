@@ -1,14 +1,14 @@
 <template>
   <div class="goods">
     <div class="side-nav">
-      <ul>
+      <ul class="navlists">
         <li v-for="(item, index) in goodsData" :key="index">
             <span v-show="item.type>0" class="icon"></span> {{ item.name }}
         </li>
       </ul>
     </div>
     <div class="list-content">
-      <div class="main-goods food-list-hook" v-for="(item, index) in goodsData" :key="index">
+        <div class="main-goods food-list-hook" v-for="(item, index) in goodsData" :key="index">
         <p>{{ item.name }}</p>
         <div class="singleGood" v-for="(item1, index1) in item.foods" :key="index1">
           <div class="goodsImage">
@@ -51,30 +51,46 @@ export default {
     this.goodsData = data.data
     console.log('goodsData', this.goodsData)
     this.$nextTick(() => {
-      // 获取单个商品的DOM元素
-      const foodListItems = document.querySelector('.list-content').children
-      var length = 0
-      this.itemLength.push(length)
-      for (let i = 0; i < foodListItems.length; i++) {
-        length += foodListItems[i].clientHeight
-
-        this.itemLength.push(length)
+      // 左侧导航点击高亮
+      const navLists = document.querySelector('.navlists').children
+      const contentGoods = document.querySelector('.list-content')
+      navLists[0].classList.add('highLight')
+      for (let i = 0; i < navLists.length; i++) {
+        navLists[i].addEventListener('click', function() {
+          navLists.forEach(item => {
+            item.classList.remove('highLight')
+          })
+          this.classList.add('highLight')
+          // 导航点击右侧内容联动
+          let titleHeight = 0
+          let contentHeight = 0
+          titleHeight = i * 26
+          data.data.slice(0, i).forEach(item => {
+            contentHeight += item.foods.length * 108
+          })
+          contentGoods.scrollTop = titleHeight + contentHeight
+        })
       }
-      // 获取左侧导航栏的DOM元素
-      var sideNavs = document.querySelector('.side-nav').querySelectorAll('li')
-      sideNavs[0].classList.add('highLight')
-      // 监听滚动事件
-      document.querySelector('.list-content').addEventListener('scroll', () => {
-        // for (var i = 0; i < this.itemLength.length; i++) {
-        if (document.querySelector('.list-content').scrollTop > this.itemLength[1]) {
-          for (var j = 0; j < this.itemLength.length; j++) {
-            sideNavs[j].classList.remove('highLight')
+      // 内容滚动 导航栏联动
+      const heightData = [0]
+      let singleHeight = 0
+      data.data.forEach((item, i) => {
+        singleHeight += 26 + item.foods.length * 108
+        heightData.push(singleHeight)
+      })
+      const relSingleHeight = heightData.slice(0, data.data.length)
+
+      contentGoods.addEventListener('scroll', function() {
+        console.log('内容滚动', relSingleHeight)
+        relSingleHeight.forEach((item, i) => {
+          if (this.scrollTop >= item) {
+            navLists.forEach(item2 => {
+              item2.classList.remove('highLight')
+            })
+            navLists[i].classList.add('highLight')
+            console.log('滑到指定位置')
           }
-          sideNavs[1].classList.add('highLight')
-        }
-        // }
-        console.log(document.querySelector('.list-content').scrollTop)
-        console.log(this.itemLength)
+        })
       })
     })
   },
