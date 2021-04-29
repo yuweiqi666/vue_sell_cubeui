@@ -81,14 +81,12 @@ export default {
       const relSingleHeight = heightData.slice(0, data.data.length)
 
       contentGoods.addEventListener('scroll', function() {
-        console.log('内容滚动', relSingleHeight)
         relSingleHeight.forEach((item, i) => {
           if (this.scrollTop >= item) {
             navLists.forEach(item2 => {
               item2.classList.remove('highLight')
             })
             navLists[i].classList.add('highLight')
-            console.log('滑到指定位置')
           }
         })
       })
