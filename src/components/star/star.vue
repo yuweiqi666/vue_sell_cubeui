@@ -72,10 +72,13 @@ export default {
   .star-24 .star-item.half {
     bg-image('./img/star24_half')
   }
+  .star-36 {
+    display: inline-block;
+  }
   .star-36 .star-item {
     width: 15px;
     height: 15px;
-    margin-right: 16px;
+    margin-right: 5px;
     background-size: 15px 15px;
   }
   .star-36 .star-item:last-child {
